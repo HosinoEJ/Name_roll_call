@@ -1,0 +1,84 @@
+* {
+    margin: 0 0;/*删除边框*/
+}
+#title{
+    margin: 30vh auto 10vh;
+    text-align: center;
+}
+#Main_title{
+    font-size: 7vh;
+    font-weight: 500;
+}
+#F_title{
+    font-size: 3vh;
+}
+body{
+    background-color: #cce7ff;
+}
+
+#a{
+    color: black;
+}
+
+
+
+/*控件*/
+#imput_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#fileInput{
+    /*這一塊我還沒有想好要做什麽樣式（畢竟我也沒怎麽接觸過<imput>這個控件）我會留給之後的更新之中*/
+}
+#nameDisplay{/*名稱顯示*/
+    text-align: center;
+    margin: 6vh auto;
+    font-weight: 600;
+    font-size: 3vh;
+}
+#startButton{
+    width: 30%;
+    display:block;margin:0 auto;
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 3vh;
+}
+
+
+
+
+
+
+
+
+/*动画部分*/
+
+/*主页背景颜色渐变*/
+body{
+    animation: body 2s forwards;
+}
+@keyframes body {
+    0%{background-color: white;}
+    50%{background-color: #cce7ff;}
+}
+
+/*主页按钮动画*/
+#imput_div{animation: IndexButton 2s forwards;}
+@keyframes IndexButton{
+    0%{opacity: 0;}
+    50%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+
+
+
+
+
+
+
+
+/*国际跨性别现身日彩蛋对应的颜色，配合/js/IndexTransgender.js食用*/
+.c-t1 { color: #5bcffa; }
+.c-t2 { color: #f5abb9; }
+.c-t3 { color: white; }
