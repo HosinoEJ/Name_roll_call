@@ -8,6 +8,7 @@ function shuffleArray(array) {
     }
 }
 
+/*
 function loadDefaultNames() {
     fetch('./names.txt')
         .then(response => response.text())
@@ -17,6 +18,7 @@ function loadDefaultNames() {
         })
         .catch(error => console.error('無法加載默認名單', error));
 }
+*/
 
 document.getElementById('fileInput').addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -36,16 +38,52 @@ document.getElementById('startButton').addEventListener('click', function() {
         clearInterval(interval);
         interval = null;
         button.innerText = '點名START!';
+
+
+        const finalName = document.getElementById('nameDisplay').innerText;
+        let pinyinKey = finalName;
+        if (namePinyinMap[pinyinKey]) {
+            const audio = new Audio(`./audio/${namePinyinMap[pinyinKey]}.wav`);
+            audio.play().catch(() => {});
+        }
+
+
+
         triggerFireworks(); // 觸發烟花效果
     } else {
         if (names.length === 0) {
             alert('名單加載失敗，請檢查文件或默認名單！');
             return;
         }
+
+
+
+
+        
         interval = setInterval(() => {
             const randomName = names[Math.floor(Math.random() * names.length)];
             document.getElementById('nameDisplay').innerText = randomName;
         }, 5); // 控制名稱滾動速度的地方
+        
+
+        /*
+        interval = setInterval(() => {
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            document.getElementById('nameDisplay').innerText = randomName;
+        
+            const firstChar = randomName.charAt(0).toLowerCase();
+            const audioPath = `/${firstChar}.wav`;
+            const audio = new Audio(audioPath);
+            audio.play().catch(err => {
+                // 靜音失敗不顯示錯誤，可能是沒有該檔案
+            });
+        }, 5); // 建議放慢速度避免聲音重疊
+        */
+
+        
+
+
+
         button.innerText = 'STOP!';
     }
 });
@@ -131,3 +169,34 @@ function triggerFireworks() {
 }
 
 loadDefaultNames();
+
+
+
+
+//名稱對應的英文簡寫
+const namePinyinMap = {
+    "郭家和": "HosinoEJ",
+    "任峻成": "nin",
+    "栾雅琳": "ran",
+    "徐源涛": "jyo",
+    "崔芷菡": "sai",
+    "杨丰宁": "you",
+    "郭子贤": "kaku",
+    "纪欣奕": "ki"
+};
+
+
+
+function loadDefaultNames() {
+    names = [
+        "郭家和",
+        "任峻成",
+        "栾雅琳",
+        "徐源涛",
+        "崔芷菡",
+        "杨丰宁",
+        "郭子贤",
+        "纪欣奕"
+    ];
+    shuffleArray(names);
+}
